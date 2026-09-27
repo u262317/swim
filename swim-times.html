@@ -164,16 +164,17 @@
   }
   .lane.met-ct{border-left-color:var(--teal);}
   .lane.met-qt{border-left-color:var(--gold);}
-  .lane-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;}
-  .lane-dist{font-family:'Oswald',sans-serif; font-size:1.1rem; color:var(--navy); font-weight:600; min-width:64px;}
-  .lane-meet{color:var(--ink-soft); font-size:.82rem; margin-top:2px;}
+  .lane-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;}
+  .lane-dist{font-family:'Oswald',sans-serif; font-size:1.1rem; color:var(--navy); font-weight:600; min-width:120px;}
+  .lane-info{display:flex; flex-direction:column; gap:6px;}
+  .lane-meet{color:var(--ink-soft); font-size:.82rem;}
   .lane-time{text-align:right;}
   .lane-time .t{font-size:1.25rem; font-weight:700;}
   .lane-time .d{font-size:.76rem; color:var(--ink-soft); margin-top:2px;}
 
   .badge{
-    display:inline-block; font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600;
-    letter-spacing:.03em; padding:3px 9px; border-radius:20px; margin-top:6px;
+    display:inline-block; font-family:'Oswald',sans-serif; font-size:.65rem; font-weight:600;
+    letter-spacing:.02em; padding:4px 10px; border-radius:4px; white-space:nowrap;
   }
   .badge.qt{background:var(--gold-bg); color:#8a6a1c;}
   .badge.ct{background:var(--teal-bg); color:#166b53;}
@@ -388,19 +389,23 @@
     else if(e.metCT) badge = '<span class="badge ct">County CT met</span>';
     else badge = '<span class="badge none">Working towards CT</span>';
 
-    // distance-specific scaling for better visual representation
-    var distScale = {'25m': 0.5, '50m': 1.2, '100m': 2.0, '200m': 3.0}[e.dist] || 1.5;
-    var timeGap = e.ct - e.qt;
-    var fastBound = e.qt - (timeGap * 0.1 * distScale);
-    var slowBound = e.ct + (timeGap * 0.15 * distScale);
-    function pct(v){
-      var p = (v - fastBound) / (slowBound - fastBound) * 100;
-      return Math.max(0, Math.min(100, p));
+    // fixed QT and CT positions for easy comparison across distances
+    var qtPct = 30;
+    var ctPct = 70;
+
+    var markerPct;
+    if(e.time <= e.qt){
+      // faster than QT: extend left of 30%
+      markerPct = 30 - ((e.qt - e.time) / (e.qt * 0.1)) * 30;
+    } else if(e.time <= e.ct){
+      // between QT and CT: linear between 30% and 70%
+      markerPct = 30 + ((e.time - e.qt) / (e.ct - e.qt)) * 40;
+    } else {
+      // slower than CT: extend right of 70%
+      markerPct = 70 + ((e.time - e.ct) / (e.ct * 0.1)) * 30;
     }
-    var ctPct = pct(e.ct);
-    var qtPct = pct(e.qt);
-    var markerPct = pct(e.time);
-    var fillPct = markerPct;
+    markerPct = Math.max(0, Math.min(100, markerPct));
+    var fillPct = Math.min(markerPct, ctPct);
     var markerClass = e.metQT ? 'gold' : (e.metCT ? 'teal' : '');
     var fillClass = e.metQT ? 'gold' : '';
 
@@ -415,16 +420,19 @@
 
     return '<div class="lane '+statusClass+'">'+
       '<div class="lane-top">'+
-        '<div><div class="lane-dist">'+e.dist+' '+e.stroke+'</div><div class="lane-meet">'+e.meet+' · '+niceDate(e.date)+'</div>'+badge+'</div>'+
+        '<div class="lane-info">'+
+          '<div class="lane-dist">'+e.dist+' '+e.stroke+'</div>'+
+          badge+
+        '</div>'+
+        '<div style="flex:1"><div class="lane-meet">'+e.meet+' · '+niceDate(e.date)+'</div></div>'+
         '<div class="lane-time"><div class="t time">'+fmt(e.time)+'</div><div class="d">personal best</div></div>'+
       '</div>'+
       '<div class="track">'+
         '<div class="fill '+fillClass+'" style="width:'+fillPct+'%"></div>'+
-        '<div class="flag qt-flag" style="left:'+qtPct+'%"><span class="lbl">QT '+fmt(e.qt)+'</span></div>'+
-        '<div class="flag ct-flag" style="left:'+ctPct+'%"><span class="lbl">CT '+fmt(e.ct)+'</span></div>'+
+        '<div class="flag qt-flag" style="left:'+qtPct+'%"><span class="lbl">QT</span></div>'+
+        '<div class="flag ct-flag" style="left:'+ctPct+'%"><span class="lbl">CT</span></div>'+
         '<div class="marker '+markerClass+'" style="left:'+markerPct+'%"></div>'+
       '</div>'+
-      gapLine+
     '</div>';
   }
 
