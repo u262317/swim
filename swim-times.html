@@ -343,12 +343,15 @@
   var currentCourse = 'SC';
 
   function renderStats(){
-    var qtEvents = events.filter(function(e){return e.metQT;});
+    var withStd = events.filter(function(e){return e.qt!=null;});
+    var qtCount = withStd.filter(function(e){return e.metQT;}).length;
+    var ctCount = withStd.filter(function(e){return e.metCT;}).length;
+    var closest = withStd.filter(function(e){return !e.metQT;}).sort(function(a,b){return a.gapToQT-b.gapToQT;})[0];
     var html = '';
-    if(qtEvents.length){
-      var latest = qtEvents.sort(function(a,b){return new Date(b.date) - new Date(a.date);})[0];
-      html = '<div class="stat gold"><div class="n">'+latest.dist+'</div><div class="l">Latest QT achievement</div></div>';
-      html += '<div class="stat"><div class="n">'+latest.stroke+'</div><div class="l">'+niceDate(latest.date)+'</div></div>';
+    html += '<div class="stat gold"><div class="n">'+qtCount+'</div><div class="l">County QT achieved</div></div>';
+    html += '<div class="stat"><div class="n">'+ctCount+'</div><div class="l">County CT achieved</div></div>';
+    if(closest){
+      html += '<div class="stat"><div class="n">'+closest.gapToQT.toFixed(2)+'s</div><div class="l">From QT in '+closest.dist+' '+closest.stroke+'</div></div>';
     }
     document.getElementById('stat-row').innerHTML = html;
   }
