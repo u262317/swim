@@ -400,7 +400,7 @@
     var ctPct = pct(e.ct);
     var qtPct = pct(e.qt);
     var markerPct = pct(e.time);
-    var fillPct = Math.min(markerPct, ctPct);
+    var fillPct = markerPct;
     var markerClass = e.metQT ? 'gold' : (e.metCT ? 'teal' : '');
     var fillClass = e.metQT ? 'gold' : '';
 
