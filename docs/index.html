@@ -388,9 +388,11 @@
     else if(e.metCT) badge = '<span class="badge ct">County CT met</span>';
     else badge = '<span class="badge none">Working towards CT</span>';
 
-    // track scaling: left = QT (0%), right = CT (100%)
-    var fastBound = e.qt;
-    var slowBound = e.ct;
+    // distance-specific scaling for better visual representation
+    var distScale = {'25m': 0.5, '50m': 1.2, '100m': 2.0, '200m': 3.0}[e.dist] || 1.5;
+    var timeGap = e.ct - e.qt;
+    var fastBound = e.qt - (timeGap * 0.1 * distScale);
+    var slowBound = e.ct + (timeGap * 0.15 * distScale);
     function pct(v){
       var p = (slowBound - v) / (slowBound - fastBound) * 100;
       return Math.max(0, Math.min(100, p));
@@ -398,7 +400,7 @@
     var ctPct = pct(e.ct);
     var qtPct = pct(e.qt);
     var markerPct = pct(e.time);
-    var fillPct = markerPct;
+    var fillPct = Math.min(markerPct, ctPct);
     var markerClass = e.metQT ? 'gold' : (e.metCT ? 'teal' : '');
     var fillClass = e.metQT ? 'gold' : '';
 
