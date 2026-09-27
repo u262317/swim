@@ -394,7 +394,7 @@
     var fastBound = e.qt - (timeGap * 0.1 * distScale);
     var slowBound = e.ct + (timeGap * 0.15 * distScale);
     function pct(v){
-      var p = (slowBound - v) / (slowBound - fastBound) * 100;
+      var p = (v - fastBound) / (slowBound - fastBound) * 100;
       return Math.max(0, Math.min(100, p));
     }
     var ctPct = pct(e.ct);
