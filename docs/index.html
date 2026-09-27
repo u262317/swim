@@ -88,7 +88,7 @@
 
   /* ---------- Main page ---------- */
   #site{display:none;}
-  .wrap{max-width:900px; margin:0 auto; padding:0 20px;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 20px;}
 
   header.hero{
     background:
@@ -100,16 +100,17 @@
   header.hero .ropes{position:absolute; inset:0; opacity:.12;}
   header.hero .ropes div{position:absolute; left:-5%; right:-5%; height:2px;
     background:repeating-linear-gradient(90deg, #fff 0 18px, transparent 18px 34px);}
-  .hero-inner{position:relative; z-index:1; display:flex; gap:32px; align-items:center; flex-wrap:wrap;}
+  .hero-inner{position:relative; z-index:1; display:flex; flex-direction:column; gap:20px;}
   .photo-frame{
-    width:148px; height:148px; border-radius:50%; flex:none;
+    position:absolute; top:56px; right:40px;
+    width:140px; height:140px; border-radius:50%; flex:none;
     border:3px solid rgba(255,255,255,.35);
     background:linear-gradient(160deg,#1D7A94,#0A2F42);
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
   }
   .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;transform:rotate(270deg);}
-  .hero-text{flex:1; min-width:240px;}
+  .hero-text{max-width:100%; padding-right:180px;}
   .hero-eyebrow{color:#8FD4C8; font-size:.85rem; margin:0 0 6px; font-weight:500;}
   .hero-text h1{font-size:2.6rem; margin:0 0 8px; font-weight:600; line-height:1;}
   .hero-text p.sub{color:rgba(255,255,255,.75); margin:0; font-size:1rem; max-width:46ch;}
