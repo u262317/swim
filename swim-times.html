@@ -102,7 +102,7 @@
     background:repeating-linear-gradient(90deg, #fff 0 18px, transparent 18px 34px);}
   .hero-inner{position:relative; z-index:1; display:flex; flex-direction:column; gap:20px;}
   .photo-frame{
-    position:absolute; top:56px; left:40px;
+    position:absolute; top:10px; left:40px;
     width:140px; height:140px; border-radius:50%; flex:none;
     border:3px solid rgba(255,255,255,.35);
     background:linear-gradient(160deg,#1D7A94,#0A2F42);
@@ -115,7 +115,7 @@
   .hero-text h1{font-size:2.6rem; margin:0 0 8px; font-weight:600; line-height:1;}
   .hero-text p.sub{color:rgba(255,255,255,.75); margin:0; font-size:1rem; max-width:46ch;}
   .hero-achievement{
-    position:absolute; top:56px; right:40px; max-width:280px;
+    position:absolute; top:10px; right:40px; max-width:280px;
     color:rgba(255,255,255,.85); font-size:.95rem; line-height:1.5;
     background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15);
     border-radius:6px; padding:16px; text-align:center;
@@ -388,9 +388,9 @@
     else if(e.metCT) badge = '<span class="badge ct">County CT met</span>';
     else badge = '<span class="badge none">Working towards CT</span>';
 
-    // track scaling: left = slower boundary, right = QT
-    var slowBound = Math.max(e.time, e.ct) * 1.06;
-    var fastBound = e.qt * 0.985;
+    // track scaling: left = QT (0%), right = CT (100%)
+    var fastBound = e.qt;
+    var slowBound = e.ct;
     function pct(v){
       var p = (slowBound - v) / (slowBound - fastBound) * 100;
       return Math.max(0, Math.min(100, p));
