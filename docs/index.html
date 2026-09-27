@@ -114,11 +114,6 @@
   .hero-eyebrow{color:#8FD4C8; font-size:.85rem; margin:0 0 6px; font-weight:500;}
   .hero-text h1{font-size:2.6rem; margin:0 0 8px; font-weight:600; line-height:1;}
   .hero-text p.sub{color:rgba(255,255,255,.75); margin:0; font-size:1rem; max-width:46ch;}
-  .hero-achievement{
-    display:none;
-  }
-  .hero-achievement strong{color:#fff; font-weight:600; display:block; margin-bottom:4px;}
-
   .stat-row{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; position:relative; z-index:1;}
   .stat{
     background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
@@ -240,7 +235,6 @@
           <h1>Lily</h1>
           <p class="sub">Personal best times, tracked stroke by stroke and measured against the Hampshire county qualifying and consideration times.</p>
         </div>
-        <div class="hero-achievement" id="hero-achievement"></div>
       </div>
       <div class="wrap stat-row" id="stat-row"></div>
     </header>
@@ -362,11 +356,6 @@
     document.getElementById('stat-row').innerHTML = html;
   }
 
-  function renderCallout(){
-    var el = document.getElementById('hero-achievement');
-    el.innerHTML = '';
-  }
-
   function laneHTML(e){
     if(e.qt == null){
       var note = e.dist === '25m' ? 'No county standard at 25m' : 'Course standards coming soon';
@@ -453,7 +442,6 @@
   });
 
   renderStats();
-  renderCallout();
   render();
 })();
 </script>
