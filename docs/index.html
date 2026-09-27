@@ -40,22 +40,25 @@
   /* ---------- Password gate ---------- */
   #gate{
     position:fixed; inset:0; z-index:50;
-    background-image:url('pool-bg.jpg');
-    background-size:400%;
-    background-position:center;
-    background-repeat:no-repeat;
-    transform:rotate(90deg);
     display:flex; align-items:center; justify-content:center;
     padding:24px;
     overflow:hidden;
   }
   #gate::before{
     content:''; position:absolute; inset:0; z-index:0;
-    background:linear-gradient(180deg, rgba(6,32,46,.5) 0%, rgba(6,32,46,.6) 100%);
+    background-image:url('pool-bg.jpg');
+    background-size:cover;
+    background-position:center;
+    transform:rotate(90deg);
+    transform-origin:center;
+  }
+  #gate::after{
+    content:''; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(6,32,46,.7) 0%, rgba(6,32,46,.8) 100%);
     pointer-events:none;
   }
-  #gate #gate-card{
-    transform:rotate(-90deg);
+  #gate-card{
+    position:relative; z-index:2;
   }
   #gate .ropes{
     position:absolute; inset:0; opacity:.4; pointer-events:none;
