@@ -40,16 +40,19 @@
   /* ---------- Password gate ---------- */
   #gate{
     position:fixed; inset:0; z-index:50;
-    background:
-      radial-gradient(circle at 20% 50%, rgba(29,122,148,.12) 0%, transparent 20%),
-      radial-gradient(circle at 60% 30%, rgba(31,138,111,.1) 0%, transparent 25%),
-      radial-gradient(circle at 80% 70%, rgba(29,122,148,.09) 0%, transparent 30%),
-      radial-gradient(circle at 40% 80%, rgba(31,138,111,.11) 0%, transparent 22%),
-      radial-gradient(1200px 600px at 20% -10%, rgba(29,122,148,.55), transparent),
-      linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    background-image:url('pool-bg.jpg');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
     display:flex; align-items:center; justify-content:center;
     padding:24px;
     overflow:hidden;
+    transform:rotate(90deg);
+  }
+  #gate::before{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(6,32,46,.4) 0%, rgba(6,32,46,.5) 100%);
+    pointer-events:none;
   }
   #gate .ropes{
     position:absolute; inset:0; opacity:.4; pointer-events:none;
