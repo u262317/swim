@@ -41,6 +41,10 @@
   #gate{
     position:fixed; inset:0; z-index:50;
     background:
+      radial-gradient(circle at 20% 50%, rgba(29,122,148,.12) 0%, transparent 20%),
+      radial-gradient(circle at 60% 30%, rgba(31,138,111,.1) 0%, transparent 25%),
+      radial-gradient(circle at 80% 70%, rgba(29,122,148,.09) 0%, transparent 30%),
+      radial-gradient(circle at 40% 80%, rgba(31,138,111,.11) 0%, transparent 22%),
       radial-gradient(1200px 600px at 20% -10%, rgba(29,122,148,.55), transparent),
       linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
     display:flex; align-items:center; justify-content:center;
@@ -48,12 +52,15 @@
     overflow:hidden;
   }
   #gate .ropes{
-    position:absolute; inset:0; opacity:.15; pointer-events:none;
+    position:absolute; inset:0; opacity:.4; pointer-events:none;
   }
   #gate .ropes div{
-    position:absolute; left:-5%; right:-5%; height:3px;
-    background:#fff;
-    box-shadow:0 0 8px rgba(255,255,255,.4);
+    position:absolute; left:-5%; right:-5%; height:12px;
+    background:repeating-linear-gradient(90deg, #4fb3d9 0px, #4fb3d9 15px, transparent 15px, transparent 35px), radial-gradient(circle at center, rgba(79,179,217,.9) 0%, rgba(79,179,217,.7) 100%);
+    background-size:50px 12px, 50px 12px;
+    background-position:0 50%, 0 50%;
+    border-radius:6px;
+    box-shadow:0 0 12px rgba(79,179,217,.5);
   }
   #gate-card{
     position:relative; z-index:1;
