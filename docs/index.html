@@ -36,7 +36,6 @@
   h1,h2,h3,.display{font-family:'Oswald',sans-serif;}
   .num, .time{font-family:'Space Mono',monospace; font-variant-numeric:tabular-nums;}
 
-  /* ---------- Password gate ---------- */
   #gate{
     position:fixed; inset:0; z-index:50;
     background:
@@ -86,15 +85,13 @@
   #gate-card button:hover{background:#a3ded4;}
   #gate-error{color:#F5B8A6; font-size:.85rem; margin-top:12px; min-height:1em;}
 
-  /* ---------- Main page ---------- */
   #site{display:none;}
   .wrap{max-width:900px; margin:0 auto; padding:0 20px;}
 
   header.hero{
     background:
-      linear-gradient(135deg, rgba(10,47,66,.92) 0%, rgba(6,32,46,.88) 100%),
-      center/cover no-repeat;
-    background-attachment:fixed;
+      radial-gradient(900px 420px at 85% -20%, rgba(255,255,255,.08), transparent),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
     color:#fff; position:relative; overflow:hidden;
     padding:120px 0 100px;
     min-height:460px; display:flex; align-items:center;
@@ -133,7 +130,6 @@
   .stat .l{font-size:.85rem; color:rgba(255,255,255,.7); margin-top:4px;}
   .stat.gold .n{color:var(--gold);}
 
-  /* course toggle */
   .toggle-bar{display:flex; justify-content:center; margin:-32px 0 40px; position:relative; z-index:2;}
   .toggle{
     display:inline-flex; background:#fff; border:1px solid var(--line); border-radius:30px;
@@ -171,7 +167,6 @@
   .lane-meet{color:var(--ink-soft); font-size:.82rem; margin-top:2px;}
   .lane-time{text-align:right;}
   .lane-time .t{font-size:1.25rem; font-weight:700;}
-  .lane-time .d{font-size:.76rem; color:var(--ink-soft); margin-top:2px;}
 
   .badge{
     display:inline-block; font-family:'Oswald',sans-serif; font-size:.72rem; font-weight:600;
@@ -179,14 +174,17 @@
   }
   .badge.qt{background:var(--gold-bg); color:#8a6a1c;}
   .badge.ct{background:var(--teal-bg); color:#166b53;}
-  .badge.none{background:#EEF3F3; color:var(--ink-soft);}
 
-  .flag{position:absolute; top:-16px; width:2px; background:var(--ink-soft); height:24px;}
-  .flag .lbl{position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:.66rem; color:var(--ink-soft); white-space:nowrap; font-family:'Space Mono',monospace;}
+  .track-container{margin-top:16px;}
+  .track{position:relative; height:10px; background:#EEF3F3; border-radius:6px; overflow:visible;}
+  .track-fill{position:absolute; left:0; top:0; bottom:0; background:linear-gradient(90deg,#8FD4C8,var(--blue)); border-radius:6px;}
+
+  .flag{position:absolute; top:-16px; width:2px; height:24px;}
   .flag.qt-flag{background:var(--gold);}
-  .flag.qt-flag .lbl{color:#8a6a1c; font-weight:700;}
   .flag.ct-flag{background:var(--teal);}
-  .flag.ct-flag .lbl{color:#166b53; font-weight:700;}
+  .flag .lbl{position:absolute; top:-18px; left:50%; transform:translateX(-50%); font-size:.66rem; white-space:nowrap; font-family:'Space Mono',monospace; font-weight:700;}
+  .flag.qt-flag .lbl{color:var(--gold);}
+  .flag.ct-flag .lbl{color:var(--teal);}
 
   .marker{position:absolute; top:-4px; width:18px; height:18px; border-radius:50%; background:var(--navy); border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.25); transform:translateX(-50%);}
 
@@ -203,7 +201,6 @@
 </head>
 <body>
 
-  <!-- Password gate -->
   <div id="gate">
     <div class="ropes"><div style="top:15%"></div><div style="top:38%"></div><div style="top:62%"></div><div style="top:85%"></div></div>
     <div id="gate-card">
@@ -218,13 +215,12 @@
     </div>
   </div>
 
-  <!-- Main site -->
   <div id="site">
     <header class="hero">
       <div class="ropes"><div style="top:10%"></div><div style="top:55%"></div><div style="top:90%"></div></div>
       <div class="wrap hero-inner">
-        <div class="photo-frame" id="photo-frame">
-          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAGQAZADASIAAhEBAxEB/8QAHQAAAgMAAwEBAAAAAAAAAAAABQYDBAcBAggACf/EAEMQAAIBAwMDAgUCBAQFAgYBBQECAwQFEQASIQYxQRNRBxQiYXEygSNCkaEIFVLBFiQzYrHR4SU0Q3Lw8TUXRIKSov/EABsBAAMBAQEBAQAAAAAAAAAAAAMEBQIBAAYH/8QAKREAAgMAAgICAwEBAAIDAQAAAAECAxEEIRIxBSITMkFRFBUjBmGRof/aAAwDAQACEQMRAD8A1nq631NX8vX0c5iStX0qpJm2GN1AJU58n286CXe4iXpmisRomjio5GT1z9O9j7D/AMnU9Fc4ZbTWmmea4tUYklSrYF4yhxv484xqC7Vcl1mpoJqcUjy0hZVVgd7IP1Ed/q/21Xx7jPkfIHdQTUlZHAkNO8cEAZYo5WDFRkYyR78at3q3Rf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOo" alt="Lily">
+        <div class="photo-frame">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAGQAZADASIAAhEBAxEB/8QAHQAAAgMAAwEBAAAAAAAAAAAABQYDBAcBAggACf/EAEMQAAIBAwMDAgUCBAQFAgYBBQECAwQFEQASIQYxQRNRBxQiYXEygSNCkaEIFVLBFiQzYrHR4SU0Q3Lw8TUXRIKSov/EABsBAAMBAQEBAQAAAAAAAAAAAAMEBQIBAAYH/8QAKREAAgMAAgICAwEBAAIDAQAAAAECAxEEIRIxBSITMkFRFBUjBmGRof/aAAwDAQACEQMRAD8A1nq631NX8vX0c5iStX0qpJm2GN1AJU58n286CXe4iXpmisRomjio5GT1z9O9j7D/AMnU9Fc4ZbTWmmea4tUYklSrYF4yhxv484xqC7Vcl1mpoJqcUjy0hZVVgd7IP1Ed/q/21Xx7jPkfIHdQTUlZHAkNO8cEAZYo5WDFRkYyR78at3q3Rf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOonrXRf8ADlNRQ1lTS1S3emjMdQiMkBBDb8j9QwTjB8jOo" alt="Lily">
         </div>
         <div class="hero-text">
           <div class="hero-eyebrow">COMPETITIVE SWIMMER</div>
@@ -264,9 +260,7 @@
         </div>
       </div>
 
-      <main id="main-content">
-        <!-- Content will be populated by JavaScript -->
-      </main>
+      <main id="main-content"></main>
     </div>
 
     <footer>
@@ -278,6 +272,20 @@
 
   <script>
     const correctPassword = 'swim';
+
+    const standardTimes = {
+      '50m Freestyle': { qt: 25.5, ct: 27.0 },
+      '100m Freestyle': { qt: 54.0, ct: 57.0 },
+      '200m Freestyle': { qt: 118, ct: 125 },
+      '50m Backstroke': { qt: 27.5, ct: 29.5 },
+      '100m Backstroke': { qt: 59.0, ct: 63 },
+      '50m Breaststroke': { qt: 30.0, ct: 32.0 },
+      '100m Breaststroke': { qt: 65, ct: 70 },
+      '50m Butterfly': { qt: 26.5, ct: 28.5 },
+      '100m Butterfly': { qt: 58.0, ct: 61 },
+      '200m IM': { qt: 135, ct: 145 }
+    };
+
     const courses = {
       'Short Course': [
         { stroke: 'Freestyle', times: [
@@ -332,14 +340,12 @@
 
     function checkPassword() {
       const input = document.getElementById('pw-input').value;
-      const errorEl = document.getElementById('gate-error');
-
       if (input === correctPassword) {
         document.getElementById('gate').style.display = 'none';
         document.getElementById('site').style.display = 'block';
         renderContent('Short Course');
       } else {
-        errorEl.textContent = 'Incorrect password. Try again.';
+        document.getElementById('gate-error').textContent = 'Incorrect password. Try again.';
         document.getElementById('pw-input').value = '';
       }
     }
@@ -347,77 +353,55 @@
     function switchCourse(button) {
       document.querySelectorAll('.toggle button').forEach(b => b.classList.remove('active'));
       button.classList.add('active');
-      const course = button.textContent;
-      renderContent(course);
+      renderContent(button.textContent);
     }
 
-    function timeToSeconds(timeStr) {
-      if (typeof timeStr === 'number') return timeStr;
-      if (!timeStr.includes(':')) return parseFloat(timeStr);
-      const parts = timeStr.split(':');
-      return parseInt(parts[0]) * 60 + parseFloat(parts[1]);
+    function toSeconds(t) {
+      if (!t.includes(':')) return parseFloat(t);
+      const [m, s] = t.split(':');
+      return parseInt(m) * 60 + parseFloat(s);
     }
-
-    const standardTimes = {
-      '50m Freestyle': { qt: 25.5, ct: 27.0 },
-      '100m Freestyle': { qt: 54.0, ct: 57.0 },
-      '200m Freestyle': { qt: 118, ct: 125 },
-      '50m Backstroke': { qt: 27.5, ct: 29.5 },
-      '100m Backstroke': { qt: 59.0, ct: 63 },
-      '50m Breaststroke': { qt: 30.0, ct: 32.0 },
-      '100m Breaststroke': { qt: 65, ct: 70 },
-      '50m Butterfly': { qt: 26.5, ct: 28.5 },
-      '100m Butterfly': { qt: 58.0, ct: 61 },
-      '200m IM': { qt: 135, ct: 145 }
-    };
 
     function renderContent(course) {
-      const content = document.getElementById('main-content');
       const data = courses[course];
-
       let html = '';
+
       data.forEach(section => {
+        const strokeName = section.stroke === 'Individual Medley' ? 'IM' : section.stroke.split(' ')[0];
         html += `<section class="stroke-section">
           <div class="stroke-head">
             <h2>${section.stroke}</h2>
-            <span class="count">${section.times.length} time${section.times.length !== 1 ? 's' : ''}</span>
+            <span class="count">${section.times.length}</span>
           </div>`;
 
         section.times.forEach(item => {
-          const badges = item.badges.map(b => {
-            const type = b === 'qt' ? 'Qualifying Time' : 'Cut Time';
-            return `<span class="badge ${b}">${type}</span>`;
-          }).join('');
+          const key = item.dist + ' ' + strokeName;
+          const std = standardTimes[key];
+          const sec = toSeconds(item.time);
 
-          let strokeKey = section.stroke;
-          if (section.stroke === 'Individual Medley') strokeKey = 'IM';
-          else strokeKey = section.stroke.split(' ')[0];
-          const key = item.dist + ' ' + strokeKey;
-          const standards = standardTimes[key];
-          const itemSeconds = timeToSeconds(item.time);
+          const badgeHTML = item.badges.map(b => `<span class="badge ${b}">${b === 'qt' ? 'Qualifying Time' : 'Cut Time'}</span>`).join('');
 
-          let trackHtml = '';
-          if (standards) {
-            const qtSeconds = standards.qt;
-            const ctSeconds = standards.ct;
-            const fastest = Math.min(itemSeconds, qtSeconds, ctSeconds);
-            const slowest = Math.max(itemSeconds, qtSeconds, ctSeconds) * 1.15;
+          let trackHTML = '';
+          if (std) {
+            const min = Math.min(sec, std.qt, std.ct);
+            const max = Math.max(sec, std.qt, std.ct) * 1.15;
+            const range = max - min;
 
-            const lilyPos = ((itemSeconds - fastest) / (slowest - fastest)) * 100;
-            const qtPos = ((qtSeconds - fastest) / (slowest - fastest)) * 100;
-            const ctPos = ((ctSeconds - fastest) / (slowest - fastest)) * 100;
+            const lilyPct = ((sec - min) / range) * 100;
+            const qtPct = ((std.qt - min) / range) * 100;
+            const ctPct = ((std.ct - min) / range) * 100;
 
-            trackHtml = `
-              <div class="track" style="position:relative; height:10px; background:#EEF3F3; border-radius:6px; margin-top:14px;">
-                <div style="position:absolute; left:0; top:0; bottom:0; width:${lilyPos}%; background:linear-gradient(90deg,#8FD4C8,var(--blue)); border-radius:6px;"></div>
-                <div class="flag qt-flag" style="left:${qtPos}%;"><span class="lbl">QT</span></div>
-                <div class="flag ct-flag" style="left:${ctPos}%;"><span class="lbl">CT</span></div>
-                <div class="marker" style="left:${lilyPos}%;"></div>
+            trackHTML = `<div class="track-container">
+              <div class="track">
+                <div class="track-fill" style="width:${lilyPct}%"></div>
+                <div class="flag qt-flag" style="left:${qtPct}%"><span class="lbl">QT</span></div>
+                <div class="flag ct-flag" style="left:${ctPct}%"><span class="lbl">CT</span></div>
+                <div class="marker" style="left:${lilyPct}%"></div>
               </div>
-            `;
+            </div>`;
           }
 
-          html += `<div class="lane ${item.badges.includes('ct') ? 'met-ct' : ''} ${item.badges.includes('qt') ? 'met-qt' : ''}">
+          html += `<div class="lane ${item.badges.includes('qt') ? 'met-qt' : ''} ${item.badges.includes('ct') ? 'met-ct' : ''}">
             <div class="lane-top">
               <div>
                 <div class="lane-dist">${item.dist}</div>
@@ -427,15 +411,15 @@
                 <div class="t">${item.time}</div>
               </div>
             </div>
-            ${badges}
-            ${trackHtml}
+            ${badgeHTML}
+            ${trackHTML}
           </div>`;
         });
 
         html += `</section>`;
       });
 
-      content.innerHTML = html;
+      document.getElementById('main-content').innerHTML = html;
     }
   </script>
 </body>
