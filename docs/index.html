@@ -47,7 +47,7 @@
   #gate::before{
     content:''; position:absolute; inset:0; z-index:0;
     background-image:url('pool-bg.jpg');
-    background-size:120%;
+    background-size:180%;
     background-position:center;
     transform:rotate(90deg);
     transform-origin:center;
@@ -73,13 +73,14 @@
   }
   #gate-card{
     position:relative; z-index:1;
-    background:rgba(0,0,0,.95);
-    border:2px solid rgba(79,179,217,.8);
+    background:rgba(0,0,0,1);
+    border:2px solid rgba(79,179,217,.9);
     border-radius:8px;
     padding:40px 36px;
     max-width:360px; width:100%;
     text-align:center;
     backdrop-filter:blur(10px);
+    box-shadow:0 0 20px rgba(0,0,0,.8);
   }
   #gate-card .mark{
     width:46px;height:46px;margin:0 auto 18px;
