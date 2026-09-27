@@ -54,22 +54,17 @@
   }
   #gate::after{
     content:''; position:absolute; inset:0; z-index:1;
-    background:linear-gradient(180deg, rgba(6,32,46,.7) 0%, rgba(6,32,46,.8) 100%);
+    background:none;
     pointer-events:none;
   }
   #gate-card{
     position:relative; z-index:2;
   }
   #gate .ropes{
-    position:absolute; inset:0; z-index:2; opacity:.4; pointer-events:none;
+    display:none;
   }
   #gate .ropes div{
-    position:absolute; left:-5%; right:-5%; height:12px;
-    background:repeating-linear-gradient(90deg, #4fb3d9 0px, #4fb3d9 15px, transparent 15px, transparent 35px), radial-gradient(circle at center, rgba(79,179,217,.9) 0%, rgba(79,179,217,.7) 100%);
-    background-size:50px 12px, 50px 12px;
-    background-position:0 50%, 0 50%;
-    border-radius:6px;
-    box-shadow:0 0 12px rgba(79,179,217,.5);
+    display:none;
   }
   #gate-card{
     position:relative; z-index:3;
