@@ -171,6 +171,7 @@
   .lane-time{text-align:right;}
   .lane-time .t{font-size:1.25rem; font-weight:700;}
   .lane-time .d{font-size:.76rem; color:var(--ink-soft); margin-top:2px;}
+  .lane-pb{font-size:.76rem; color:var(--ink-soft); text-align:right; padding-right:18px; margin-top:6px;}
 
   .badge{
     display:inline-block; font-family:'Oswald',sans-serif; font-size:.65rem; font-weight:600;
@@ -425,14 +426,15 @@
           badge+
         '</div>'+
         '<div style="flex:1"><div class="lane-meet">'+e.meet+' · '+niceDate(e.date)+'</div></div>'+
-        '<div class="lane-time"><div class="t time">'+fmt(e.time)+'</div><div class="d">personal best</div></div>'+
+        '<div class="lane-time"><div class="t time">'+fmt(e.time)+'</div></div>'+
       '</div>'+
       '<div class="track">'+
         '<div class="fill '+fillClass+'" style="width:'+fillPct+'%"></div>'+
-        '<div class="flag qt-flag" style="left:'+qtPct+'%"><span class="lbl">QT</span></div>'+
-        '<div class="flag ct-flag" style="left:'+ctPct+'%"><span class="lbl">CT</span></div>'+
+        '<div class="flag qt-flag" style="left:'+qtPct+'%"><span class="lbl">QT '+fmt(e.qt)+'</span></div>'+
+        '<div class="flag ct-flag" style="left:'+ctPct+'%"><span class="lbl">CT '+fmt(e.ct)+'</span></div>'+
         '<div class="marker '+markerClass+'" style="left:'+markerPct+'%"></div>'+
       '</div>'+
+      '<div class="lane-pb">personal best</div>'+
     '</div>';
   }
 
