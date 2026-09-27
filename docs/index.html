@@ -181,6 +181,14 @@
   .badge.ct{background:var(--teal-bg); color:#166b53;}
   .badge.none{background:#EEF3F3; color:var(--ink-soft);}
 
+  .flag{position:absolute; top:-16px; width:2px; background:var(--ink-soft); height:24px;}
+  .flag .lbl{position:absolute; top:-16px; left:50%; transform:translateX(-50%); font-size:.66rem; color:var(--ink-soft); white-space:nowrap; font-family:'Space Mono',monospace;}
+  .flag.qt-flag{background:var(--gold);}
+  .flag.qt-flag .lbl{color:#8a6a1c; font-weight:700;}
+  .flag.ct-flag{background:var(--teal);}
+  .flag.ct-flag .lbl{color:#166b53; font-weight:700;}
+
+  .marker{position:absolute; top:-4px; width:18px; height:18px; border-radius:50%; background:var(--navy); border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.25); transform:translateX(-50%);}
 
   footer{max-width:900px; margin:0 auto; padding:0 20px 60px; color:var(--ink-soft); font-size:.85rem; line-height:1.6;}
   footer .fbox{background:#fff; border:1px solid var(--line); border-radius:6px; padding:18px 20px;}
@@ -343,6 +351,25 @@
       renderContent(course);
     }
 
+    function timeToSeconds(timeStr) {
+      if (typeof timeStr === 'number') return timeStr;
+      const parts = timeStr.split(':');
+      return parseInt(parts[0]) * 60 + parseFloat(parts[1]);
+    }
+
+    const standardTimes = {
+      '50m Freestyle': { qt: 25.5, ct: 27.0 },
+      '100m Freestyle': { qt: 54.0, ct: 57.0 },
+      '200m Freestyle': { qt: 118, ct: 125 },
+      '50m Backstroke': { qt: 27.5, ct: 29.5 },
+      '100m Backstroke': { qt: 59.0, ct: 63 },
+      '50m Breaststroke': { qt: 30.0, ct: 32.0 },
+      '100m Breaststroke': { qt: 65, ct: 70 },
+      '50m Butterfly': { qt: 26.5, ct: 28.5 },
+      '100m Butterfly': { qt: 58.0, ct: 61 },
+      '200m IM': { qt: 135, ct: 145 }
+    };
+
     function renderContent(course) {
       const content = document.getElementById('main-content');
       const data = courses[course];
@@ -361,6 +388,31 @@
             return `<span class="badge ${b}">${type}</span>`;
           }).join('');
 
+          const key = item.dist + ' ' + section.stroke.split(' ')[0];
+          const standards = standardTimes[key];
+          const itemSeconds = timeToSeconds(item.time);
+
+          let trackHtml = '';
+          if (standards) {
+            const qtSeconds = standards.qt;
+            const ctSeconds = standards.ct;
+            const fastest = Math.min(itemSeconds, qtSeconds, ctSeconds);
+            const slowest = Math.max(itemSeconds, qtSeconds, ctSeconds) * 1.15;
+
+            const lilyPos = ((itemSeconds - fastest) / (slowest - fastest)) * 100;
+            const qtPos = ((qtSeconds - fastest) / (slowest - fastest)) * 100;
+            const ctPos = ((ctSeconds - fastest) / (slowest - fastest)) * 100;
+
+            trackHtml = `
+              <div class="track" style="position:relative; height:10px; background:#EEF3F3; border-radius:6px; margin-top:14px;">
+                <div style="position:absolute; left:0; top:0; bottom:0; width:${lilyPos}%; background:linear-gradient(90deg,#8FD4C8,var(--blue)); border-radius:6px;"></div>
+                <div class="flag qt-flag" style="left:${qtPos}%;"><span class="lbl">QT</span></div>
+                <div class="flag ct-flag" style="left:${ctPos}%;"><span class="lbl">CT</span></div>
+                <div class="marker" style="left:${lilyPos}%;"></div>
+              </div>
+            `;
+          }
+
           html += `<div class="lane ${item.badges.includes('ct') ? 'met-ct' : ''} ${item.badges.includes('qt') ? 'met-qt' : ''}">
             <div class="lane-top">
               <div>
@@ -372,6 +424,7 @@
               </div>
             </div>
             ${badges}
+            ${trackHtml}
           </div>`;
         });
 
