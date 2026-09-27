@@ -366,14 +366,8 @@
   }
 
   function renderCallout(){
-    var qtEvents = events.filter(function(e){return e.metQT;});
     var el = document.getElementById('hero-achievement');
-    if(qtEvents.length){
-      var names = qtEvents.map(function(e){return e.dist+' '+e.stroke;}).join(', ');
-      el.innerHTML = '<strong>'+names+'</strong> — Lily has hit the Hampshire QT standard.';
-    } else {
-      el.innerHTML = '';
-    }
+    el.innerHTML = '';
   }
 
   function laneHTML(e){
