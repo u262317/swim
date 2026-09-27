@@ -45,11 +45,13 @@
     overflow:hidden;
   }
   #gate::before{
-    content:''; position:absolute; inset:0; z-index:0;
+    content:''; position:absolute; inset:50%; z-index:0;
+    width:150%; height:150%;
+    margin:-75% 0 0 -75%;
     background-image:url('pool-bg.jpg');
     background-size:cover;
     background-position:center;
-    transform:rotate(90deg) scale(1.5);
+    transform:rotate(90deg);
     transform-origin:center;
   }
   #gate::after{
