@@ -102,7 +102,7 @@
     background:repeating-linear-gradient(90deg, #fff 0 18px, transparent 18px 34px);}
   .hero-inner{position:relative; z-index:1; display:flex; flex-direction:column; gap:20px;}
   .photo-frame{
-    position:absolute; top:56px; right:40px;
+    position:absolute; top:56px; left:40px;
     width:140px; height:140px; border-radius:50%; flex:none;
     border:3px solid rgba(255,255,255,.35);
     background:linear-gradient(160deg,#1D7A94,#0A2F42);
@@ -110,10 +110,17 @@
     overflow:hidden;
   }
   .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;transform:rotate(270deg);}
-  .hero-text{max-width:100%; padding-right:180px;}
+  .hero-text{max-width:100%; padding-left:180px;}
   .hero-eyebrow{color:#8FD4C8; font-size:.85rem; margin:0 0 6px; font-weight:500;}
   .hero-text h1{font-size:2.6rem; margin:0 0 8px; font-weight:600; line-height:1;}
   .hero-text p.sub{color:rgba(255,255,255,.75); margin:0; font-size:1rem; max-width:46ch;}
+  .hero-achievement{
+    position:absolute; top:56px; right:40px; max-width:280px;
+    color:rgba(255,255,255,.85); font-size:.95rem; line-height:1.5;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15);
+    border-radius:6px; padding:16px; text-align:center;
+  }
+  .hero-achievement strong{color:#fff; font-weight:600; display:block; margin-bottom:4px;}
 
   .stat-row{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; position:relative; z-index:1;}
   .stat{
@@ -232,6 +239,7 @@
           <h1>Lily</h1>
           <p class="sub">Personal best times, tracked stroke by stroke and measured against the Hampshire county qualifying and consideration times.</p>
         </div>
+        <div class="hero-achievement" id="hero-achievement"></div>
       </div>
       <div class="wrap stat-row" id="stat-row"></div>
     </header>
@@ -356,10 +364,10 @@
 
   function renderCallout(){
     var qtEvents = events.filter(function(e){return e.metQT;});
-    var el = document.getElementById('callout-area');
+    var el = document.getElementById('hero-achievement');
     if(qtEvents.length){
       var names = qtEvents.map(function(e){return e.dist+' '+e.stroke;}).join(', ');
-      el.innerHTML = '<div class="callout"><div class="ic">🥇</div><div><strong>County qualifying time achieved</strong><span>'+names+' — Lily has hit the Hampshire QT standard.</span></div></div>';
+      el.innerHTML = '<strong>'+names+'</strong> — Lily has hit the Hampshire QT standard.';
     } else {
       el.innerHTML = '';
     }
