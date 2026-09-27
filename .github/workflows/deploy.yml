@@ -19,7 +19,8 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git checkout gh-pages || git checkout -b gh-pages
-          cp docs/index.html index.html
-          git add index.html
+          mkdir -p docs
+          cp ${{ github.workspace }}/docs/index.html docs/index.html
+          git add docs/index.html
           git commit -m "Deploy from main" || echo "No changes"
           git push origin gh-pages
