@@ -166,14 +166,10 @@
   .lane.met-qt{border-left-color:var(--gold);}
   .lane-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;}
   .lane-dist{font-family:'Oswald',sans-serif; font-size:1.1rem; color:var(--navy); font-weight:600; min-width:120px;}
-  .lane-info{display:flex; flex-direction:column; gap:6px;}
-  .lane-meet{color:var(--ink-soft); font-size:.82rem;}
+  .lane-info{display:flex; flex-direction:column; gap:4px;}
+  .lane-meet{color:var(--ink-soft); font-size:.75rem; font-weight:400;}
   .lane-time{text-align:right;}
   .lane-time .t{font-size:1.25rem; font-weight:700;}
-  .lane-time .d{font-size:.76rem; color:var(--ink-soft); margin-top:2px;}
-  .lane-time-meta{display:flex; gap:16px; align-items:flex-start;}
-  .lane-time-meta .t{font-size:1.25rem; font-weight:700; min-width:60px; text-align:right;}
-  .lane-time-meta .lane-meet{font-size:.82rem; color:var(--ink-soft);}
 
   .badge{
     display:inline-block; font-family:'Oswald',sans-serif; font-size:.65rem; font-weight:600;
@@ -425,13 +421,11 @@
       '<div class="lane-top">'+
         '<div class="lane-info">'+
           '<div class="lane-dist">'+e.dist+' '+e.stroke+'</div>'+
+          '<div class="lane-meet">'+e.meet+' · '+niceDate(e.date)+'</div>'+
           badge+
         '</div>'+
         '<div style="flex:1"></div>'+
-        '<div class="lane-time-meta">'+
-          '<div class="t time">'+fmt(e.time)+'</div>'+
-          '<div class="lane-meet">'+e.meet+' · '+niceDate(e.date)+'</div>'+
-        '</div>'+
+        '<div class="lane-time"><div class="t time">'+fmt(e.time)+'</div></div>'+
       '</div>'+
       '<div class="track">'+
         '<div class="fill '+fillClass+'" style="width:'+fillPct+'%"></div>'+
