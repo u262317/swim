@@ -108,7 +108,7 @@
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
   }
-  .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;transform:rotate(-90deg);}
   .hero-text{flex:1; min-width:240px;}
   .hero-eyebrow{color:#8FD4C8; font-size:.85rem; margin:0 0 6px; font-weight:500;}
   .hero-text h1{font-size:2.6rem; margin:0 0 8px; font-weight:600; line-height:1;}
@@ -409,8 +409,8 @@
       '</div>'+
       '<div class="track">'+
         '<div class="fill '+fillClass+'" style="width:'+fillPct+'%"></div>'+
-        '<div class="flag ct-flag" style="left:'+ctPct+'%"><span class="lbl">CT '+fmt(e.ct)+'</span></div>'+
         '<div class="flag qt-flag" style="left:'+qtPct+'%"><span class="lbl">QT '+fmt(e.qt)+'</span></div>'+
+        '<div class="flag ct-flag" style="left:'+ctPct+'%"><span class="lbl">CT '+fmt(e.ct)+'</span></div>'+
         '<div class="marker '+markerClass+'" style="left:'+markerPct+'%"></div>'+
       '</div>'+
       gapLine+
