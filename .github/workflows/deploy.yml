@@ -18,9 +18,10 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+          cp docs/index.html /tmp/index.html
           git checkout gh-pages || git checkout -b gh-pages
           mkdir -p docs
-          cp ${{ github.workspace }}/docs/index.html docs/index.html
+          cp /tmp/index.html docs/index.html
           git add docs/index.html
           git commit -m "Deploy from main" || echo "No changes"
           git push origin gh-pages
