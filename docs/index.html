@@ -350,7 +350,11 @@
     var html = '';
     html += '<div class="stat gold"><div class="n">'+qtCount+'</div><div class="l">County QT achieved</div></div>';
     html += '<div class="stat"><div class="n">'+ctCount+'</div><div class="l">County CT achieved</div></div>';
-    if(closest){
+    var qtEvents = withStd.filter(function(e){return e.metQT;});
+    if(qtEvents.length){
+      var latest = qtEvents.sort(function(a,b){return new Date(b.date) - new Date(a.date);})[0];
+      html += '<div class="stat gold"><div class="n">'+latest.dist+' '+latest.stroke+'</div><div class="l">Latest QT achievement</div></div>';
+    } else if(closest){
       html += '<div class="stat"><div class="n">'+closest.gapToQT.toFixed(2)+'s</div><div class="l">From QT in '+closest.dist+' '+closest.stroke+'</div></div>';
     }
     document.getElementById('stat-row').innerHTML = html;
