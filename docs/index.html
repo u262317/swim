@@ -174,12 +174,15 @@
   .badge{
     display:inline-block; font-family:'Oswald',sans-serif; font-size:.65rem; font-weight:600;
     letter-spacing:.02em; padding:4px 10px; border-radius:4px; white-space:nowrap;
+    min-width:130px; text-align:center;
   }
   .badge.qt{background:var(--gold-bg); color:#8a6a1c;}
   .badge.ct{background:var(--teal-bg); color:#166b53;}
   .badge.none{background:#EEF3F3; color:var(--ink-soft);}
 
   .track{position:relative; height:10px; background:#EEF3F3; border-radius:6px; margin-top:14px;}
+  .gap-note{font-size:.75rem; color:var(--ink-soft); margin-top:6px; text-align:center;}
+  .gap-note .num{font-weight:600; font-family:'Space Mono',monospace;}
   .track .fill{position:absolute; left:0; top:0; bottom:0; background:linear-gradient(90deg,#8FD4C8,var(--blue)); border-radius:6px;}
   .track .fill.gold{background:linear-gradient(90deg,#E9C978,var(--gold));}
   .flag{position:absolute; top:-16px; width:2px; background:var(--ink-soft); height:24px;}
@@ -404,17 +407,13 @@
       markerPct = 70 + ((e.time - e.ct) / (e.ct * 0.1)) * 30;
     }
     markerPct = Math.max(0, Math.min(100, markerPct));
-    var fillPct = Math.min(markerPct, ctPct);
+    var fillPct = markerPct;
     var markerClass = e.metQT ? 'gold' : (e.metCT ? 'teal' : '');
     var fillClass = e.metQT ? 'gold' : '';
 
-    var gapLine;
-    if(e.metQT){
-      gapLine = '<div class="gap-line">Ahead of QT by <span class="num">'+Math.abs(e.gapToQT).toFixed(2)+'s</span></div>';
-    } else if(e.metCT){
-      gapLine = '<div class="gap-line"><span class="num">'+Math.abs(e.gapToQT).toFixed(2)+'s</span> from QT</div>';
-    } else {
-      gapLine = '<div class="gap-line"><span class="num">'+Math.abs(e.gapToCT).toFixed(2)+'s</span> from CT · <span class="num">'+Math.abs(e.gapToQT).toFixed(2)+'s</span> from QT</div>';
+    var gapNote = '';
+    if(e.time > e.qt && !e.metQT){
+      gapNote = '<div class="gap-note"><span class="num">'+Math.abs(e.gapToQT).toFixed(2)+'s</span> to QT</div>';
     }
 
     return '<div class="lane '+statusClass+'">'+
@@ -433,6 +432,7 @@
         '<div class="flag ct-flag" style="left:'+ctPct+'%"><span class="lbl">CT '+fmt(e.ct)+'</span></div>'+
         '<div class="marker '+markerClass+'" style="left:'+markerPct+'%"></div>'+
       '</div>'+
+      gapNote+
     '</div>';
   }
 
