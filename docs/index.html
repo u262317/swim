@@ -419,7 +419,7 @@
     return '<div class="lane '+statusClass+'">'+
       '<div class="lane-top">'+
         '<div class="lane-info">'+
-          '<div class="lane-dist">'+e.dist+' '+e.stroke+'</div>'+
+          '<div class="lane-dist">'+e.dist+' '+e.stroke+(e.metQT ? ' 🏆' : '')+'</div>'+
           '<div class="lane-meet">'+e.meet+' · '+niceDate(e.date)+'</div>'+
           badge+
         '</div>'+
