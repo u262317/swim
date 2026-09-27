@@ -388,7 +388,10 @@
             return `<span class="badge ${b}">${type}</span>`;
           }).join('');
 
-          const key = item.dist + ' ' + section.stroke.split(' ')[0];
+          let strokeKey = section.stroke;
+          if (section.stroke === 'Individual Medley') strokeKey = 'IM';
+          else strokeKey = section.stroke.split(' ')[0];
+          const key = item.dist + ' ' + strokeKey;
           const standards = standardTimes[key];
           const itemSeconds = timeToSeconds(item.time);
 
